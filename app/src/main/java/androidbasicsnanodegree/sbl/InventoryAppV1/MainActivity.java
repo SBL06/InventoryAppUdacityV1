@@ -1,4 +1,4 @@
-package androidbasicsnanodegree.sbl.myapplication;
+package androidbasicsnanodegree.sbl.InventoryAppV1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

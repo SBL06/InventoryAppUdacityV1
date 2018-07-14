@@ -1,4 +1,4 @@
-package androidbasicsnanodegree.sbl.myapplication;
+package androidbasicsnanodegree.sbl.InventoryAppV1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

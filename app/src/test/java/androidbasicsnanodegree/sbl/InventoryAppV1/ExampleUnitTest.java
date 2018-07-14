@@ -1,4 +1,4 @@
-package androidbasicsnanodegree.sbl.myapplication;
+package androidbasicsnanodegree.sbl.InventoryAppV1;
 
 import org.junit.Test;
 
