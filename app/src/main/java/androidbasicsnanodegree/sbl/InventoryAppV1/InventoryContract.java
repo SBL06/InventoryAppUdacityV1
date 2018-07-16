@@ -4,9 +4,10 @@ import android.provider.BaseColumns;
 
 public final class InventoryContract {
 
-    // To prevent someone from accidentally instantiating the contract class,
-    // give it an empty constructor.
-    private InventoryContract() {}
+    // Empty constructor created to prevent someone from accidentally instantiating the contract class,
+
+    private InventoryContract() {
+    }
 
 
     public static final class InventoryEntry implements BaseColumns {
@@ -18,7 +19,7 @@ public final class InventoryContract {
         public final static String _ID = BaseColumns._ID;
 
 
-        public final static String COLUMN_PRODUCT_NAME ="product_name";
+        public final static String COLUMN_PRODUCT_NAME = "product_name";
 
 
         public final static String COLUMN_PRICE = "price";
