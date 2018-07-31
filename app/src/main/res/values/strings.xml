@@ -3,4 +3,6 @@
     <string name="dummy_insert">Insert Dummy Data</string>
     <string name="dummyName">DummyName</string>
     <string name="dummySupplier">DummySupplier</string>
+    <string name="empty_view_text">Sorry, no items to display! Please insert a new item.</string>
+    <string name="sale_button">Sale</string>
 </resources>

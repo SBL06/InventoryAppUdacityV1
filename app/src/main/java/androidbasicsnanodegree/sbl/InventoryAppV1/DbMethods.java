@@ -76,7 +76,7 @@ public final class DbMethods {
 
         try {
             // Create a header in the Text View
-            String result = "The pets table contains " + cursor.getCount() + " pets.\n\n";
+            String result = "The table contains " + cursor.getCount() + " items.\n\n";
 
             result += (InventoryEntry._ID + " - " +
                     InventoryEntry.COLUMN_PRODUCT_NAME + " - " +
