@@ -3,32 +3,32 @@ package androidbasicsnanodegree.sbl.InventoryAppV1;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidbasicsnanodegree.sbl.InventoryAppV1.data.InventoryContract;
 
-public class MainActivity extends AppCompatActivity  implements
+// Following class and methods are inspired from the Udacity course : Android Basics Nanodegree - Data storage
+
+public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    ItemCursorAdapter adapter ;
+    // Initializing the adapter
+    ItemCursorAdapter adapter;
 
+    // Unique identifier for the loader
     private static final int ITEM_LOADER = 0;
 
     @Override
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity  implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initializing the floating action button
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,18 +46,30 @@ public class MainActivity extends AppCompatActivity  implements
             }
         });
 
-        adapter = new ItemCursorAdapter(this, null) ;
+        // Creating a new custom adapter
+        adapter = new ItemCursorAdapter(this, null);
 
-        ListView list = findViewById(R.id.list) ;
+        // Initializing the list view
+        ListView list = findViewById(R.id.list);
         list.setEmptyView(findViewById(R.id.empty_view));
-
+        // setting the adapter
         list.setAdapter(adapter);
-
-
+        // setting the onclicklistener
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, Edit_Activity.class);
+                Uri currentItemUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, l);
+                intent.setData(currentItemUri);
+                startActivity(intent);
+            }
+        });
+        // Initializing the loader
         getLoaderManager().initLoader(ITEM_LOADER, null, this);
 
     }
 
+    //Setting up the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -65,13 +78,12 @@ public class MainActivity extends AppCompatActivity  implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
+            // Insert dummy button
             case R.id.action_dummy:
                 insertItem();
                 return true;
-            // Respond to a click on the "Delete all entries" menu option
+            // Delete all item
             case R.id.action_delete_all:
                 deleteAll();
                 return true;
@@ -79,35 +91,33 @@ public class MainActivity extends AppCompatActivity  implements
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Method used to insert a dummy item
     private void insertItem() {
-
-        ContentValues dummyValues = new ContentValues() ;
-
+        ContentValues dummyValues = new ContentValues();
         dummyValues.put(InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME, "DummyItem");
         dummyValues.put(InventoryContract.InventoryEntry.COLUMN_PRICE, 25);
         dummyValues.put(InventoryContract.InventoryEntry.COLUMN_QUANTITY, 1);
         dummyValues.put(InventoryContract.InventoryEntry.COLUMN_SUPPLIER, "DummySupply");
         dummyValues.put(InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER, 4383569874l);
-
-        getContentResolver().insert(InventoryContract.InventoryEntry.CONTENT_URI, dummyValues) ;
+        getContentResolver().insert(InventoryContract.InventoryEntry.CONTENT_URI, dummyValues);
     }
 
+    // Method to delete all the items
     private void deleteAll() {
-
-        getContentResolver().delete(InventoryContract.InventoryEntry.CONTENT_URI, null, null) ;
+        getContentResolver().delete(InventoryContract.InventoryEntry.CONTENT_URI, null, null);
     }
 
+    // Following methods set up and configure the loader
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // Define a projection that specifies the columns from the table we care about.
+
         String[] projection = {
                 InventoryContract.InventoryEntry._ID,
                 InventoryContract.InventoryEntry.COLUMN_PRODUCT_NAME,
                 InventoryContract.InventoryEntry.COLUMN_PRICE, InventoryContract.InventoryEntry.COLUMN_QUANTITY,
                 InventoryContract.InventoryEntry.COLUMN_SUPPLIER, InventoryContract.InventoryEntry.COLUMN_SUPPLIER_PHONE_NUMBER};
 
-        // This loader will execute the ContentProvider's query method on a background thread
+        // Retrieving data on the background thread
         return new CursorLoader(this,   // Parent activity context
                 InventoryContract.InventoryEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
@@ -126,43 +136,26 @@ public class MainActivity extends AppCompatActivity  implements
         adapter.swapCursor(null);
     }
 
+    // Following method is called when the sale button is clicked
     public void saleButton(int id, int quantity) {
-
         Uri currentItemUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-
-        ContentValues values = new ContentValues() ;
-        int newQuantity ;
+        ContentValues values = new ContentValues();
+        int newQuantity;
 
         if (quantity < 1) {
-            newQuantity = 0 ;
+            newQuantity = 0;
+        } else {
+            newQuantity = quantity - 1;
         }
-        else {
-            newQuantity = quantity -1 ;
-        }
-
-        values.put(InventoryContract.InventoryEntry.COLUMN_QUANTITY, newQuantity) ;
-
-        getContentResolver().update(currentItemUri, values, null, null );
-
+        values.put(InventoryContract.InventoryEntry.COLUMN_QUANTITY, newQuantity);
+        getContentResolver().update(currentItemUri, values, null, null);
     }
 
-    public void editButton (int id) {
-
+    // Following method is called when the edit button is clicked
+    public void editButton(int id) {
         Intent intent = new Intent(MainActivity.this, Edit_Activity.class);
-
-        // Form the content URI that represents the specific pet that was clicked on,
-        // by appending the "id" (passed as input to this method) onto the
-        // {@link PetEntry#CONTENT_URI}.
-        // For example, the URI would be "content://com.example.android.pets/pets/2"
-        // if the pet with ID 2 was clicked on.
         Uri currentItemUri = ContentUris.withAppendedId(InventoryContract.InventoryEntry.CONTENT_URI, id);
-
-        // Set the URI on the data field of the intent
         intent.setData(currentItemUri);
-
-        Toast.makeText(this, currentItemUri.toString(), Toast.LENGTH_SHORT).show();
-
-        // Launch the {@link EditorActivity} to display the data for the current pet.
         startActivity(intent);
     }
 }
