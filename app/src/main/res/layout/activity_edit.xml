@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Edit_Activity">
+
+    <TextView
+        android:id="@+id/EditDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/item_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/EditPriceView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/EditItemName"
+        app:layout_constraintTop_toBottomOf="@+id/EditItemName" />
+
+    <EditText
+        android:id="@+id/EditSupplierView"
+        android:layout_width="0dp"
+        android:layout_height="71dp"
+        android:hint="@string/supplier_name"
+        app:layout_constraintEnd_toEndOf="@+id/EditItemName"
+        app:layout_constraintStart_toStartOf="@+id/EditItemName"
+        app:layout_constraintTop_toBottomOf="@+id/EditPriceView" />
+
+    <EditText
+        android:id="@+id/EditItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/item_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/EditDescriptionView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/PlusButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/add"
+        app:layout_constraintEnd_toEndOf="@+id/EditPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/EditQuantityDisplay" />
+
+    <TextView
+        android:id="@+id/EditQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/quantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditPhoneNumber" />
+
+    <Button
+        android:id="@+id/MinusButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/remove"
+        app:layout_constraintEnd_toStartOf="@+id/EditQuantityDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/EditQuantityDisplay" />
+
+    <EditText
+        android:id="@+id/EditPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/supplier_phone_number"
+        app:layout_constraintEnd_toEndOf="@+id/EditSupplierView"
+        app:layout_constraintStart_toStartOf="@+id/EditSupplierView"
+        app:layout_constraintTop_toBottomOf="@+id/EditSupplierView" />
+
+    <EditText
+        android:id="@+id/EditQuantityDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/quantity_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/EditQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/EditPhoneNumber" />
+
+    <Button
+        android:id="@+id/OrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/order"
+        app:layout_constraintEnd_toStartOf="@+id/PlusButton"
+        app:layout_constraintStart_toEndOf="@+id/MinusButton"
+        app:layout_constraintTop_toBottomOf="@+id/MinusButton" />
+
+
+</android.support.constraint.ConstraintLayout>

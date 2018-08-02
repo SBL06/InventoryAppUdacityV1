@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    android:clickable="true"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -29,8 +32,8 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:text="@string/sale_button"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditButton" />
 
     <TextView
         android:id="@+id/NameView"
@@ -51,35 +54,58 @@
         android:id="@+id/SupplierView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/NameView"
-        app:layout_constraintStart_toStartOf="@+id/NameView"
-        app:layout_constraintTop_toBottomOf="@+id/NameView" />
+        app:layout_constraintEnd_toStartOf="@+id/EditButton"
+        app:layout_constraintStart_toEndOf="@+id/NameView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/QuantityView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/SaleButton"
-        app:layout_constraintStart_toEndOf="@+id/NameView"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toStartOf="@+id/NameView"
+        app:layout_constraintTop_toTopOf="@+id/SaleButton" />
 
     <TextView
         android:id="@+id/SupplierPhoneView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/EditButton"
+        app:layout_constraintStart_toEndOf="@+id/NameView"
+        app:layout_constraintTop_toBottomOf="@+id/SupplierView" />
+
+    <Button
+        android:id="@+id/EditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/priceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/SaleButton"
-        app:layout_constraintStart_toEndOf="@+id/SupplierView"
-        app:layout_constraintTop_toBottomOf="@+id/QuantityView" />
+        app:layout_constraintStart_toEndOf="@+id/QuantityView"
+        app:layout_constraintTop_toTopOf="@+id/SaleButton" />
 
 </android.support.constraint.ConstraintLayout>

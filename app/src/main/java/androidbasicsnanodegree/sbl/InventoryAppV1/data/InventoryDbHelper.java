@@ -1,12 +1,12 @@
-package androidbasicsnanodegree.sbl.InventoryAppV1;
+package androidbasicsnanodegree.sbl.InventoryAppV1.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidbasicsnanodegree.sbl.InventoryAppV1.InventoryContract.InventoryEntry;
+import androidbasicsnanodegree.sbl.InventoryAppV1.data.InventoryContract.InventoryEntry;
 
-//inspired from the Udacity Course : Android Basics - Data Storage
+//inspired from the Udacity Course : Android Basics Nanodegree - Data Storage
 
 public class InventoryDbHelper extends SQLiteOpenHelper {
 
